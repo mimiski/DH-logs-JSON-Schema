@@ -12,7 +12,7 @@ services:
     ports:
       - '8080:8080'
     volumes:
-      - ./data:/data
+      - ./app:/app
   spark-worker:
     image: docker.io/bitnami/spark:3
     environment:
