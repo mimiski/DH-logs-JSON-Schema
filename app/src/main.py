@@ -10,4 +10,3 @@ for fileName in [f for f in os.listdir(".") if f.endswith("log")]:
   dataFile = open(fileName, encoding="cp1252")
   data = json.load(dataFile)
   validate(instance=data, schema=schema)
-
