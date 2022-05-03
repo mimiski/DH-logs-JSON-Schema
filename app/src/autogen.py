@@ -1,3 +1,6 @@
+# GENERATED USING https://app.quicktype.io/#l=python
+# ...and then manually curated by mimi~
+
 # This code parses date/times, so please
 #
 #     pip install python-dateutil
@@ -8,7 +11,7 @@
 #
 # and then, to convert JSON from a string, do
 #
-#     result = coordinate_from_dict(json.loads(json_string))
+#     result = logfile_from_dict(json.loads(json_string))
 
 from dataclasses import dataclass
 from typing import List, Any, Optional, TypeVar, Callable, Type, cast
@@ -592,7 +595,8 @@ class TextMessage:
 
 
 @dataclass
-class Coordinate:
+class LogFile:
+    file: str
     map: Map
     players: List[Player]
     rounds: List[Round]
@@ -601,18 +605,20 @@ class Coordinate:
     version: str
 
     @staticmethod
-    def from_dict(obj: Any) -> 'Coordinate':
+    def from_dict(obj: Any) -> 'LogFile':
         assert isinstance(obj, dict)
+        file = from_str(obj.get("file"))
         map = Map.from_dict(obj.get("map"))
         players = from_list(Player.from_dict, obj.get("players"))
         rounds = from_list(Round.from_dict, obj.get("rounds"))
         server = Server.from_dict(obj.get("server"))
         text_messages = from_list(TextMessage.from_dict, obj.get("text_messages"))
         version = from_str(obj.get("version"))
-        return Coordinate(map, players, rounds, server, text_messages, version)
+        return LogFile(file, map, players, rounds, server, text_messages, version)
 
     def to_dict(self) -> dict:
         result: dict = {}
+        result["file"] = from_str(self.file)
         result["map"] = to_class(Map, self.map)
         result["players"] = from_list(lambda x: to_class(Player, x), self.players)
         result["rounds"] = from_list(lambda x: to_class(Round, x), self.rounds)
@@ -622,9 +628,9 @@ class Coordinate:
         return result
 
 
-def coordinate_from_dict(s: Any) -> Coordinate:
-    return Coordinate.from_dict(s)
+def logfile_from_dict(s: Any) -> LogFile:
+    return LogFile.from_dict(s)
 
 
-def coordinate_to_dict(x: Coordinate) -> Any:
-    return to_class(Coordinate, x)
+def logfile_to_dict(x: LogFile) -> Any:
+    return to_class(LogFile, x)
