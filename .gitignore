@@ -1,2 +1,4 @@
 app/data
+app/src/__pycache__
+jtd-codegen.exe
 venv/
