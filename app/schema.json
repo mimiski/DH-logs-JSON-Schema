@@ -438,7 +438,14 @@
                   "type": "integer"
               },
               "pawn": {
-                "type": "string"
+                "anyOf": [
+                    {
+                        "type": "null"
+                    },
+                    {
+                        "type": "string"
+                    }
+                ]
               },
               "location": {
                   "type": "array",
@@ -633,6 +640,7 @@
       "DestroyedReason": {
           "type": "string",
           "enum": [
+              "abandoned",
               "encroached",
               "replaced",
               "exhausted",

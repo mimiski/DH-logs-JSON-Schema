@@ -1,5 +1,3 @@
-# GENERATED USING https://app.quicktype.io/#l=python
-
 # This code parses date/times, so please
 #
 #     pip install python-dateutil
@@ -345,8 +343,8 @@ class Event:
 class Killer:
     id: str
     location: List[int]
-    pawn: str
     team: int
+    pawn: Optional[str] = None
     vehicle: Optional[str] = None
 
     @staticmethod
@@ -354,17 +352,17 @@ class Killer:
         assert isinstance(obj, dict)
         id = from_str(obj.get("id"))
         location = from_list(from_int, obj.get("location"))
-        pawn = from_str(obj.get("pawn"))
         team = from_int(obj.get("team"))
+        pawn = from_union([from_none, from_str], obj.get("pawn"))
         vehicle = from_union([from_none, from_str], obj.get("vehicle"))
-        return Killer(id, location, pawn, team, vehicle)
+        return Killer(id, location, team, pawn, vehicle)
 
     def to_dict(self) -> dict:
         result: dict = {}
         result["id"] = from_str(self.id)
         result["location"] = from_list(from_int, self.location)
-        result["pawn"] = from_str(self.pawn)
         result["team"] = from_int(self.team)
+        result["pawn"] = from_union([from_none, from_str], self.pawn)
         result["vehicle"] = from_union([from_none, from_str], self.vehicle)
         return result
 
@@ -398,6 +396,7 @@ class Frag:
 
 
 class DestroyedReason(Enum):
+    ABANDONED = "abandoned"
     DAMAGED = "damaged"
     DELETED = "deleted"
     ENCROACHED = "encroached"
