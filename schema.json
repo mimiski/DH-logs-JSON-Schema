@@ -1,0 +1,564 @@
+{
+  "$ref": "#/definitions/Welcome6",
+  "$schema": "http://json-schema.org/draft-06/schema#",
+  "definitions": {
+    "Bounds": {
+      "additionalProperties": false,
+      "properties": {
+        "ne": {
+          "items": {
+            "type": "number"
+          },
+          "type": "array"
+        },
+        "sw": {
+          "items": {
+            "type": "number"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "ne",
+        "sw"
+      ],
+      "title": "Bounds",
+      "type": "object"
+    },
+    "Capture": {
+      "additionalProperties": false,
+      "properties": {
+        "objective_id": {
+          "type": "integer"
+        },
+        "player_ids": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "round_time": {
+          "type": "integer"
+        },
+        "team": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "objective_id",
+        "player_ids",
+        "round_time",
+        "team"
+      ],
+      "title": "Capture",
+      "type": "object"
+    },
+    "Construction": {
+      "additionalProperties": false,
+      "properties": {
+        "class": {
+          "type": "string"
+        },
+        "location": {
+          "items": {
+            "type": "number"
+          },
+          "type": "array"
+        },
+        "player_id": {
+          "type": "string"
+        },
+        "round_time": {
+          "type": "integer"
+        },
+        "team": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "class",
+        "location",
+        "player_id",
+        "round_time",
+        "team"
+      ],
+      "title": "Construction",
+      "type": "object"
+    },
+    "DestroyedReason": {
+      "enum": [
+        "overrun",
+        "encroached",
+        "replaced",
+        "abandoned",
+        "damaged",
+        "deleted",
+        "spawn_kill",
+        "exhausted"
+      ],
+      "title": "DestroyedReason",
+      "type": "string"
+    },
+    "DestroyedVehicle": {
+      "additionalProperties": false,
+      "properties": {
+        "location": {
+          "items": {
+            "type": "integer"
+          },
+          "type": "array"
+        },
+        "team": {
+          "type": "integer"
+        },
+        "vehicle": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "location",
+        "team",
+        "vehicle"
+      ],
+      "title": "DestroyedVehicle",
+      "type": "object"
+    },
+    "Frag": {
+      "additionalProperties": false,
+      "properties": {
+        "damage_type": {
+          "type": "string"
+        },
+        "hit_index": {
+          "type": "integer"
+        },
+        "killer": {
+          "$ref": "#/definitions/Killer"
+        },
+        "time": {
+          "type": "integer"
+        },
+        "victim": {
+          "$ref": "#/definitions/Killer"
+        }
+      },
+      "required": [
+        "damage_type",
+        "hit_index",
+        "killer",
+        "time",
+        "victim"
+      ],
+      "title": "Frag",
+      "type": "object"
+    },
+    "Killer": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "location": {
+          "items": {
+            "type": "integer"
+          },
+          "type": "array"
+        },
+        "pawn": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "type": "string"
+            }
+          ]
+        },
+        "team": {
+          "type": "integer"
+        },
+        "vehicle": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "type": "string"
+            }
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "location",
+        "pawn",
+        "team",
+        "vehicle"
+      ],
+      "title": "Killer",
+      "type": "object"
+    },
+    "Map": {
+      "additionalProperties": false,
+      "properties": {
+        "bounds": {
+          "$ref": "#/definitions/Bounds"
+        },
+        "name": {
+          "type": "string"
+        },
+        "offset": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "bounds",
+        "name",
+        "offset"
+      ],
+      "title": "Map",
+      "type": "object"
+    },
+    "Player": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "names": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "sessions": {
+          "items": {
+            "$ref": "#/definitions/Session"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "id",
+        "names",
+        "sessions"
+      ],
+      "title": "Player",
+      "type": "object"
+    },
+    "RallyPoint": {
+      "additionalProperties": false,
+      "properties": {
+        "created_at": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "destroyed_at": {
+          "anyOf": [
+            {
+              "format": "date-time",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "destroyed_reason": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/definitions/DestroyedReason"
+            }
+          ]
+        },
+        "establisher_count": {
+          "type": "integer"
+        },
+        "is_established": {
+          "type": "boolean"
+        },
+        "location": {
+          "items": {
+            "type": "number"
+          },
+          "type": "array"
+        },
+        "player_id": {
+          "type": "string"
+        },
+        "spawn_count": {
+          "type": "integer"
+        },
+        "squad_index": {
+          "type": "integer"
+        },
+        "team_index": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "created_at",
+        "destroyed_at",
+        "destroyed_reason",
+        "establisher_count",
+        "is_established",
+        "location",
+        "player_id",
+        "spawn_count",
+        "squad_index",
+        "team_index"
+      ],
+      "title": "RallyPoint",
+      "type": "object"
+    },
+    "Round": {
+      "additionalProperties": false,
+      "properties": {
+        "captures": {
+          "items": {
+            "$ref": "#/definitions/Capture"
+          },
+          "type": "array"
+        },
+        "constructions": {
+          "items": {
+            "$ref": "#/definitions/Construction"
+          },
+          "type": "array"
+        },
+        "ended_at": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "events": {
+          "items": {},
+          "type": "array"
+        },
+        "frags": {
+          "items": {
+            "$ref": "#/definitions/Frag"
+          },
+          "type": "array"
+        },
+        "rally_points": {
+          "items": {
+            "$ref": "#/definitions/RallyPoint"
+          },
+          "type": "array"
+        },
+        "started_at": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "vehicle_frags": {
+          "items": {
+            "$ref": "#/definitions/VehicleFrag"
+          },
+          "type": "array"
+        },
+        "winner": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "captures",
+        "constructions",
+        "ended_at",
+        "events",
+        "frags",
+        "rally_points",
+        "started_at",
+        "vehicle_frags",
+        "winner"
+      ],
+      "title": "Round",
+      "type": "object"
+    },
+    "Server": {
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "name"
+      ],
+      "title": "Server",
+      "type": "object"
+    },
+    "Session": {
+      "additionalProperties": false,
+      "properties": {
+        "ended_at": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "ip": {
+          "type": "string"
+        },
+        "started_at": {
+          "format": "date-time",
+          "type": "string"
+        }
+      },
+      "required": [
+        "ended_at",
+        "ip",
+        "started_at"
+      ],
+      "title": "Session",
+      "type": "object"
+    },
+    "TextMessage": {
+      "additionalProperties": false,
+      "properties": {
+        "message": {
+          "type": "string"
+        },
+        "sender": {
+          "type": "string"
+        },
+        "sent_at": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "squad_index": {
+          "type": "integer"
+        },
+        "team_index": {
+          "type": "integer"
+        },
+        "type": {
+          "$ref": "#/definitions/Type"
+        }
+      },
+      "required": [
+        "message",
+        "sender",
+        "sent_at",
+        "squad_index",
+        "team_index",
+        "type"
+      ],
+      "title": "TextMessage",
+      "type": "object"
+    },
+    "Type": {
+      "enum": [
+        "SquadSay",
+        "TeamSay",
+        "VehicleSay",
+        "CommandSay",
+        "Say"
+      ],
+      "title": "Type",
+      "type": "string"
+    },
+    "VehicleFrag": {
+      "additionalProperties": false,
+      "properties": {
+        "damage_type": {
+          "type": "string"
+        },
+        "destroyed_vehicle": {
+          "$ref": "#/definitions/DestroyedVehicle"
+        },
+        "killer": {
+          "$ref": "#/definitions/Killer"
+        },
+        "time": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "damage_type",
+        "destroyed_vehicle",
+        "killer",
+        "time"
+      ],
+      "title": "VehicleFrag",
+      "type": "object"
+    },
+    "Welcome6": {
+      "additionalProperties": false,
+      "properties": {
+        "captures": {
+          "items": {
+            "$ref": "#/definitions/Capture"
+          },
+          "type": "array"
+        },
+        "constructions": {
+          "items": {
+            "$ref": "#/definitions/Construction"
+          },
+          "type": "array"
+        },
+        "ended_at": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "events": {
+          "items": {},
+          "type": "array"
+        },
+        "map": {
+          "$ref": "#/definitions/Map"
+        },
+        "players": {
+          "items": {
+            "$ref": "#/definitions/Player"
+          },
+          "type": "array"
+        },
+        "rally_points": {
+          "items": {
+            "$ref": "#/definitions/RallyPoint"
+          },
+          "type": "array"
+        },
+        "rounds": {
+          "items": {
+            "$ref": "#/definitions/Round"
+          },
+          "type": "array"
+        },
+        "server": {
+          "$ref": "#/definitions/Server"
+        },
+        "text_messages": {
+          "items": {
+            "$ref": "#/definitions/TextMessage"
+          },
+          "type": "array"
+        },
+        "vehicle_frags": {
+          "items": {
+            "$ref": "#/definitions/VehicleFrag"
+          },
+          "type": "array"
+        },
+        "version": {
+          "type": "string"
+        },
+        "winner": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "map",
+        "players",
+        "rounds",
+        "server",
+        "text_messages",
+        "version"
+      ],
+      "title": "Welcome6",
+      "type": "object"
+    }
+  }
+}
