@@ -1,3 +1,2 @@
-*.log
-
+app/data
 venv/
