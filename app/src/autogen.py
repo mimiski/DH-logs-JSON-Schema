@@ -71,14 +71,14 @@ def from_union(fs, x):
     assert False
 
 
-def to_enum(c: Type[EnumT], x: Any) -> EnumT:
-    assert isinstance(x, c)
-    return x.value
-
-
 def from_bool(x: Any) -> bool:
     assert isinstance(x, bool)
     return x
+
+
+def to_enum(c: Type[EnumT], x: Any) -> EnumT:
+    assert isinstance(x, c)
+    return x.value
 
 
 @dataclass
@@ -341,71 +341,11 @@ class Event:
         return result
 
 
-class Pawn(Enum):
-    DH_GERMAN_CAMO_HEER_PAWN = "DH_GermanCamoHeerPawn"
-    DH_GERMAN_CAMO_HEER_PAWN_B = "DH_GermanCamoHeerPawnB"
-    DH_GERMAN_GREAT_COAT_PAWN = "DH_GermanGreatCoatPawn"
-    DH_GERMAN_GREAT_COAT_SS_PAWN = "DH_GermanGreatCoatSSPawn"
-    DH_GERMAN_HEER_PAWN = "DH_GermanHeerPawn"
-    DH_GERMAN_LUFTWAFFE_PAWN = "DH_GermanLuftwaffePawn"
-    DH_GERMAN_RADIO_HEER_PAWN = "DH_GermanRadioHeerPawn"
-    DH_GERMAN_TANK_CREW_PAWN = "DH_GermanTankCrewPawn"
-    DH_HETZER_DESTROYER_CAMO_ONE = "DH_HetzerDestroyer_CamoOne"
-    DH_IS2_CANNON_PAWN_LATE = "DH_IS2CannonPawn_Late"
-    DH_IS2_TANK_BERLIN = "DH_IS2Tank_Berlin"
-    DH_ISU152_CANNON_PAWN_LATE = "DH_ISU152CannonPawn_Late"
-    DH_JAGDPANZER_IVL70_CANNON_PAWN = "DH_JagdpanzerIVL70CannonPawn"
-    DH_JAGDPANZER_IVL70_DESTROYER_CAMO_ONE = "DH_JagdpanzerIVL70Destroyer_CamoOne"
-    DH_JAGDPANZER_IV_MOUNTED_MG_PAWN = "DH_JagdpanzerIVMountedMGPawn"
-    DH_LE_IG18_CANNON_PAWN = "DH_LeIG18CannonPawn"
-    DH_M3_A1_HALFTRACK_TRANSPORT_SOVIET = "DH_M3A1HalftrackTransport_Soviet"
-    DH_M3_HALFTRACK_MG_PAWN = "DH_M3HalftrackMGPawn"
-    DH_PAK40_CANNON_PAWN_LATE = "DH_Pak40CannonPawnLate"
-    DH_PAK43_CANNON_PAWN = "DH_Pak43CannonPawn"
-    DH_PANTHERTURM_CANNON_PAWN = "DH_PantherturmCannonPawn"
-    DH_PANTHER_G_CANNON_PAWN = "DH_PantherGCannonPawn"
-    DH_PANZER_IVJ_CANNON_PAWN = "DH_PanzerIVJCannonPawn"
-    DH_PANZER_IVJ_TANK = "DH_PanzerIVJTank"
-    DH_PASSENGER_PAWN_TWO = "DHPassengerPawnTwo"
-    DH_SDKFZ251_TRANSPORT_CAMO_ONE = "DH_Sdkfz251Transport_CamoOne"
-    DH_SD_KFZ251_22_CANNON_PAWN = "DH_SdKfz251_22CannonPawn"
-    DH_SHERMAN_CANNON_PAWN_A_76_MM = "DH_ShermanCannonPawnA_76mm"
-    DH_SOVIET_GREATCOAT_BROWN_BAG_LATE_PAWN = "DH_SovietGreatcoatBrownBagLatePawn"
-    DH_SOVIET_GREATCOAT_BROWN_LATE_PAWN = "DH_SovietGreatcoatBrownLatePawn"
-    DH_SOVIET_GREATCOAT_BROWN_SL_LATE_PAWN = "DH_SovietGreatcoatBrownSLLatePawn"
-    DH_SOVIET_GREATCOAT_GREY_LATE_PAWN = "DH_SovietGreatcoatGreyLatePawn"
-    DH_SOVIET_GREATCOAT_GREY_SL_LATE_PAWN = "DH_SovietGreatcoatGreySLLatePawn"
-    DH_SOVIET_TANK_CREW_LATE_PAWN = "DH_SovietTankCrewLatePawn"
-    DH_SOVIET_TUNIC_BACKPACK_LATE_PAWN = "DH_SovietTunicBackpackLatePawn"
-    DH_SOVIET_TUNIC_LATE_PAWN = "DH_SovietTunicLatePawn"
-    DH_SOVIET_TUNIC_M43_DARK_PAWN_A = "DH_SovietTunicM43DarkPawnA"
-    DH_SOVIET_TUNIC_M43_DARK_PAWN_B = "DH_SovietTunicM43DarkPawnB"
-    DH_SOVIET_TUNIC_M43_GREEN_PAWN_A = "DH_SovietTunicM43GreenPawnA"
-    DH_SOVIET_TUNIC_M43_GREEN_PAWN_B = "DH_SovietTunicM43GreenPawnB"
-    DH_SOVIET_TUNIC_M43_PAWN_A = "DH_SovietTunicM43PawnA"
-    DH_SOVIET_TUNIC_M43_PAWN_B = "DH_SovietTunicM43PawnB"
-    DH_SOVIET_TUNIC_M43_SERGEANT_DARK_PAWN_A = "DH_SovietTunicM43SergeantDarkPawnA"
-    DH_SOVIET_TUNIC_M43_SERGEANT_GREEN_PAWN_A = "DH_SovietTunicM43SergeantGreenPawnA"
-    DH_SOVIET_TUNIC_M43_SERGEANT_PAWN_A = "DH_SovietTunicM43SergeantPawnA"
-    DH_SOVIET_TUNIC_NOCOAT_LATE_PAWN = "DH_SovietTunicNocoatLatePawn"
-    DH_SOVIET_TUNIC_SERGEANT_LATE_PAWN = "DH_SovietTunicSergeantLatePawn"
-    DH_T3485_CANNON_PAWN_BERLIN = "DH_T3485CannonPawn_Berlin"
-    DH_T3485_TANK_BERLIN = "DH_T3485Tank_Berlin"
-    DH_TIGER_CANNON_PAWN_LATE = "DH_TigerCannonPawn_Late"
-    DH_TIGER_MOUNTED_MG_PAWN = "DH_TigerMountedMGPawn"
-    DH_TIGER_TANK_CAMO_ONE = "DH_TigerTank_CamoOne"
-    DH_VS_GREAT_COAT_PAWN = "DH_VSGreatCoatPawn"
-    DH_VS_GREAT_COAT_PAWN_B = "DH_VSGreatCoatPawnB"
-    DH_ZI_S2_CANNON_PAWN = "DH_ZiS2CannonPawn"
-    DH_ZI_S3_CANNON_PAWN = "DH_ZiS3CannonPawn"
-    NONE = "None"
-
-
 @dataclass
 class Killer:
     id: str
     location: List[int]
-    pawn: Pawn
+    pawn: str
     team: int
     vehicle: Optional[str] = None
 
@@ -414,7 +354,7 @@ class Killer:
         assert isinstance(obj, dict)
         id = from_str(obj.get("id"))
         location = from_list(from_int, obj.get("location"))
-        pawn = Pawn(obj.get("pawn"))
+        pawn = from_str(obj.get("pawn"))
         team = from_int(obj.get("team"))
         vehicle = from_union([from_none, from_str], obj.get("vehicle"))
         return Killer(id, location, pawn, team, vehicle)
@@ -423,7 +363,7 @@ class Killer:
         result: dict = {}
         result["id"] = from_str(self.id)
         result["location"] = from_list(from_int, self.location)
-        result["pawn"] = to_enum(Pawn, self.pawn)
+        result["pawn"] = from_str(self.pawn)
         result["team"] = from_int(self.team)
         result["vehicle"] = from_union([from_none, from_str], self.vehicle)
         return result
