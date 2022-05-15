@@ -9,7 +9,7 @@
       "type": "cppdbg",
       "request": "launch",
       "program": "${workspaceFolder}/build/stats",
-      "args": ["2019-12-15T20_11_23.log"],
+      "args": ["2020-09-07T22_01_15.log"],
       "stopAtEntry": false,
       "cwd": "${fileDirname}",
       "environment": [],
