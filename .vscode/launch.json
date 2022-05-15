@@ -3,14 +3,27 @@
   // Hover to view descriptions of existing attributes.
   // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
   "version": "0.2.0",
-  "configurations": [{
-      "name": "main.py",
-      "type": "python",
+  "configurations": [
+    {
+      "name": "(gdb) Launch",
+      "type": "cppdbg",
       "request": "launch",
-      "program": "main.py",
-      "console": "integratedTerminal",
-      "justMyCode": true
+      "program": "${workspaceFolder}/build/stats",
+      "args": ["2019-12-15T20_11_23.log"],
+      "stopAtEntry": false,
+      "cwd": "${fileDirname}",
+      "environment": [],
+      "externalConsole": false,
+      "MIMode": "gdb",
+      "setupCommands": [
+          {
+              "description": "Enable pretty-printing for gdb",
+              "text": "-enable-pretty-printing",
+              "ignoreFailures": true
+          }
+      ]
     }
+    
 
   ]
 }
