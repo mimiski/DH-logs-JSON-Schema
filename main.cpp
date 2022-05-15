@@ -1,6 +1,6 @@
 // #include "v1.h"
 
-#include "v1.h"
+#include "schema.hpp"
 #include <ranges>
 #include <iostream>
 #include <fstream>
@@ -9,18 +9,21 @@
 #include <iostream>
 #include <locale>
 #include <string>
-#include "utils.h"
+#include "utils.hpp"
 
 using namespace std;
 
 int main(int argc, char **argv)
 {
-  std::ios::sync_with_stdio(false);
+  auto args = vector<string>(argv, argv + argc);
+  auto file_names = args
+    | std::views::filter([](string s) { return s.ends_with(".log"); });
 
-  auto file_names = vector<string>(argv, argv + argc);
+  for(auto s: file_names) {
+    cout << s << endl;
+  }
   
   auto jsons = file_names
-    | std::views::filter([](string s) { return s.ends_with(".log"); })
     | std::views::transform([](string fileName) {
       ifstream file(fileName);
       std::stringstream buffer;
