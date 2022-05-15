@@ -3,6 +3,12 @@
 #include <iostream>
 #include <locale>
 #include <string>
+#include <fstream>
+#include <string>
+
+#include "schema.hpp"
+
+using namespace std;
 
 // Convert Windows-1252 (aka CP1252) to UTF8 Gist 
 // https://gist.github.com/ArthurSonzogni/8ebe69e005981bed6f0a44750f7812df
