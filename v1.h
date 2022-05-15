@@ -4,7 +4,7 @@
 //
 //  Then include this file, and then do
 //
-//     Coordinate data = nlohmann::json::parse(jsonString);
+//     LogFile data = nlohmann::json::parse(jsonString);
 
 #pragma once
 
@@ -638,10 +638,10 @@ namespace darklight {
         void set_type(const Type & value) { this->type = value; }
     };
 
-    class Coordinate {
+    class LogFile {
         public:
-        Coordinate() = default;
-        virtual ~Coordinate() = default;
+        LogFile() = default;
+        virtual ~LogFile() = default;
 
         private:
         Map map;
@@ -736,8 +736,8 @@ namespace nlohmann {
     void from_json(const json & j, darklight::TextMessage & x);
     void to_json(json & j, const darklight::TextMessage & x);
 
-    void from_json(const json & j, darklight::Coordinate & x);
-    void to_json(json & j, const darklight::Coordinate & x);
+    void from_json(const json & j, darklight::LogFile & x);
+    void to_json(json & j, const darklight::LogFile & x);
 
     void from_json(const json & j, darklight::DestroyedReason & x);
     void to_json(json & j, const darklight::DestroyedReason & x);
@@ -1042,7 +1042,7 @@ namespace nlohmann {
         j["type"] = x.get_type();
     }
 
-    inline void from_json(const json & j, darklight::Coordinate& x) {
+    inline void from_json(const json & j, darklight::LogFile& x) {
         x.set_map(j.at("map").get<darklight::Map>());
         x.set_players(j.at("players").get<std::vector<darklight::Player>>());
         x.set_rounds(j.at("rounds").get<std::vector<darklight::Round>>());
@@ -1051,7 +1051,7 @@ namespace nlohmann {
         x.set_version(j.at("version").get<std::string>());
     }
 
-    inline void to_json(json & j, const darklight::Coordinate & x) {
+    inline void to_json(json & j, const darklight::LogFile & x) {
         j = json::object();
         j["map"] = x.get_map();
         j["players"] = x.get_players();
