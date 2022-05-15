@@ -1,0 +1,9 @@
+{
+  "compilerPath": "/usr/bin/g++",
+  "files.associations": {
+    "*.html": "html",
+    "*.log": "json",
+    "iostream": "cpp",
+    "ranges": "cpp"
+  }
+}
